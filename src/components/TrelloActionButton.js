@@ -1,7 +1,9 @@
 import { Button, Card, Icon, TextareaAutosize } from "@mui/material";
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addCard, addList } from "../actions";
 
-const TrelloActionButton = ({ list }) => {
+const TrelloActionButton = ({ list, dispatch, listID }) => {
   const [formOpen, setformOpen] = useState(false);
   const [text, setText] = useState("");
 
@@ -14,6 +16,18 @@ const TrelloActionButton = ({ list }) => {
 
   const handleInputChange = (e) => {
     setText(e.target.value);
+  };
+  const handleAddList = () => {
+    if (text) {
+      dispatch(addList(text));
+    }
+    return;
+  };
+
+  const handleAddCard = () => {
+    if (text) {
+      dispatch(addCard(listID, text));
+    }
   };
 
   const handleForm = () => {
@@ -50,12 +64,13 @@ const TrelloActionButton = ({ list }) => {
 
         <div style={styles.formButtonGroup}>
           <Button
+            onMouseDown={list ? handleAddList : handleAddCard}
             variant="contained"
             style={{ color: "white", backgroundColor: "#5aac44" }}
           >
-              {buttonTitle}
+            {buttonTitle}
           </Button>
-          <Icon style={{marginLeft:8,cursor:"pointer"}}>close</Icon>
+          <Icon style={{ marginLeft: 8, cursor: "pointer" }}>close</Icon>
         </div>
       </div>
     );
@@ -95,11 +110,11 @@ const styles = {
     width: 272,
     paddingLeft: 10,
   },
-  formButtonGroup:{
-      marginTop:8,
-      display:"flex",
-      alignItems:"center"
-  }
+  formButtonGroup: {
+    marginTop: 8,
+    display: "flex",
+    alignItems: "center",
+  },
 };
 
-export default TrelloActionButton;
+export default connect()(TrelloActionButton);
