@@ -8,7 +8,7 @@ function App({ lists }) {
       <h2>Hello</h2>
       <div style={styles.listContainer}>
         {lists.map((list) => (
-          <TrelloList title={list.title} cards={list.cards} />
+          <TrelloList key={list.id} title={list.title} cards={list.cards} />
         ))}
       </div>
     </div>
