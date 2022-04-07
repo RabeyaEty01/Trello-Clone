@@ -1,9 +1,9 @@
 import { Button, Card, Icon, TextareaAutosize } from "@mui/material";
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addCard, addList } from "../actions";
+import { addList, addCard } from "../actions";
 
-const TrelloActionButton = ({ list, dispatch, listID }) => {
+const TrelloActionButton = ({ list,dispatch,listID}) => {
   const [formOpen, setformOpen] = useState(false);
   const [text, setText] = useState("");
 
@@ -25,6 +25,7 @@ const TrelloActionButton = ({ list, dispatch, listID }) => {
   };
 
   const handleAddCard = () => {
+    console.log(listID);
     if (text) {
       dispatch(addCard(listID, text));
     }

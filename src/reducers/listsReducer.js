@@ -1,6 +1,6 @@
 import { CONSTANTS } from "../actions";
 let listID = 3;
-let cardID = 3;
+let cardID = 4;
 
 const initialState = [
   {
@@ -33,6 +33,10 @@ const initialState = [
         id: 2,
         text: "consectetur adipisicing elit.sit amet consectetur adipisicing elit. Officia reiciendis magni ipsa eos iure expedita delectus, quo architecto sint consectetur!",
       },
+      {
+        id: 3,
+        text: " elit.sit amet consectetur adipisicing elit. Officia reiciendis magni ipsa eos iure expedita delectus, quo architecto sint consectetur!",
+      },
     ],
   },
   {
@@ -61,9 +65,9 @@ const listsReducer = (state = initialState, action) => {
       const newList = {
         title: action.payload,
         cards: [],
-        id: listID,
-      };
-      listID += 1;
+        id: listID
+      }
+      listID += 1
       return [...state, newList];
     case CONSTANTS.ADD_CARD:
       const newCard = {
