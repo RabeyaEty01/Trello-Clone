@@ -19,7 +19,9 @@ const TrelloActionButton = ({ list,dispatch,listID}) => {
   };
   const handleAddList = () => {
     if (text) {
+      setText("");
       dispatch(addList(text));
+
     }
     return;
   };
@@ -27,6 +29,7 @@ const TrelloActionButton = ({ list,dispatch,listID}) => {
   const handleAddCard = () => {
     console.log(listID);
     if (text) {
+      setText("");
       dispatch(addCard(listID, text));
     }
   };
@@ -108,7 +111,7 @@ const styles = {
     cursor: "pointer",
     borderRadius: 3,
     height: 36,
-    width: 272,
+    minWidth: 272,
     paddingLeft: 10,
   },
   formButtonGroup: {
